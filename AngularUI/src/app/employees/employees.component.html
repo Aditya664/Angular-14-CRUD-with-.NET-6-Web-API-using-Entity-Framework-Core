@@ -18,7 +18,7 @@
             <td>{{item.phone}}</td>
             <td>{{item.salary}}</td>
             <td>{{item.department}}</td>
-            <td><a href="#">View</a></td>
+            <td><a [routerLink] = "['/employees','edit',item.id]">View</a></td>
         </tr>
     </tbody>
 </table>
