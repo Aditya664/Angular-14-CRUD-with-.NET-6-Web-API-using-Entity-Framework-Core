@@ -26,9 +26,20 @@ namespace AngularAPI.Services
              return emp;
         }
 
+        public Employee DeleteEmployee(Guid id)
+        {
+            var found = _context.Employees.Find(id);
+            if(found == null) return null;
+            _context.Employees.Remove(found);
+            _context.SaveChanges();
+            return found;
+        }
+
         public Employee GetEmployeeById(Guid id)
         {
-            throw new NotImplementedException();
+            var found = _context.Employees.Find(id);
+            if (found == null) return null;
+            return found;
         }
 
         public IEnumerable<Employee> GetEmployees()
@@ -37,9 +48,18 @@ namespace AngularAPI.Services
             return result;
         }
 
-        public Employee UpdateEmployee(Guid id, Employee employee)
+        public int UpdateEmployee(Guid id, UpdateEmployeeRequest employee)
         {
-            throw new NotImplementedException();
+            if(employee == null || id == null) return -1;
+            var found = _context.Employees.Find(id);
+            if(found == null) return 0;
+            found.Name = employee.Name;
+            found.Email = employee.Email;
+            found.Phone = employee.Phone;
+            found.Salary = employee.Salary;
+            found.Department = employee.Department;
+            _context.SaveChanges();
+            return 1;
         }
     }
 }

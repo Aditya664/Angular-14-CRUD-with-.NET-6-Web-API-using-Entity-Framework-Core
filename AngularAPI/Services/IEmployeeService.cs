@@ -7,6 +7,7 @@ namespace AngularAPI.Services
          IEnumerable<Employee> GetEmployees();
          Employee GetEmployeeById(Guid id);
          Employee AddEmployee(AddEmployeeRequest employee);
-         Employee UpdateEmployee(Guid id,Employee employee);
+         Employee DeleteEmployee(Guid id);
+         int UpdateEmployee(Guid id,UpdateEmployeeRequest employee);
     }
 }
