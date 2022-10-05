@@ -21,4 +21,8 @@ export class EmployeeService {
   addEmployees(addEmployees: IEmployee): Observable<IEmployee> {
     return this.HttpClient.post<IEmployee>(this.baseApiUrl+"/employee",addEmployees);
   }
+  getEmployee(id:string):Observable<IEmployee>{
+    console.log(this.baseApiUrl+"/employee/"+id)
+    return this.HttpClient.get<IEmployee>(this.baseApiUrl+"/employee/"+id);
+  }
 }
