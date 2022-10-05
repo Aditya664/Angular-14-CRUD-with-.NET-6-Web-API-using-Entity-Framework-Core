@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { IEmployee } from 'src/Model/IEmployee';
 import { EmployeeService } from '../employee.service';
 
@@ -13,7 +13,7 @@ export class EditEmployeeComponent implements OnInit {
 
   EditEmp!: FormGroup;
   Emp!: IEmployee;
-  constructor(private router: ActivatedRoute, private service: EmployeeService, private fb: FormBuilder) { }
+  constructor(private router: Router,private route:ActivatedRoute, private service: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.EditEmp = this.fb.group({
@@ -24,13 +24,29 @@ export class EditEmployeeComponent implements OnInit {
         salary: ['responce.salary', [Validators.required]],
         department:['responce.department',[Validators.required]],
       })
-    const id = String(this.router.snapshot.paramMap.get('id')); // getting id from url
+    const id = String(this.route.snapshot.paramMap.get('id')); // getting id from url
     this.service.getEmployee(id).subscribe(emp =>{
       this.Emp = emp;
     }) 
   }
 
   EditEmployee() {
-
+    var updeatEmployeeRequest:IEmployee = {
+      id:this.EditEmp.value.id,
+      name:this.EditEmp.value.name,
+      email:this.EditEmp.value.email,
+      phone:this.EditEmp.value.phone,
+      salary:this.EditEmp.value.salary,
+      department:this.EditEmp.value.department
+    };
+    let id = this.Emp.id;
+    console.log(id);
+    console.log(updeatEmployeeRequest);
+    this.service.updateEmployee(updeatEmployeeRequest.id, updeatEmployeeRequest).
+    subscribe({next: (emp) =>{
+      this.router.navigate(['employees']);
+    }
+  })
+      
   }
 }

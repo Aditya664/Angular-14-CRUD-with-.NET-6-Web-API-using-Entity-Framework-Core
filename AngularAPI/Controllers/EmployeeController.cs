@@ -36,7 +36,7 @@ namespace AngularAPI.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
-        public ActionResult Update(Guid id,UpdateEmployeeRequest request){
+        public ActionResult Update(Guid id,[FromBody]UpdateEmployeeRequest request){
             var result = _service.UpdateEmployee(id,request);
             if(result == -1) return BadRequest();
             if(result == 0) return NotFound();
