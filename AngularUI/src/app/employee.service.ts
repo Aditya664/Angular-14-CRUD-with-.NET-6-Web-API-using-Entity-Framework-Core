@@ -28,4 +28,7 @@ export class EmployeeService {
   updateEmployee(id:string,updateEmployee:IEmployee):Observable<IEmployee> {
     return this.HttpClient.put<IEmployee>(this.baseApiUrl+"/employee/"+id,updateEmployee);
   }
+  deleteEmployee(id:string):Observable<IEmployee>{
+    return this.HttpClient.delete<IEmployee>(this.baseApiUrl+"/employee/"+id);
+  }
 }

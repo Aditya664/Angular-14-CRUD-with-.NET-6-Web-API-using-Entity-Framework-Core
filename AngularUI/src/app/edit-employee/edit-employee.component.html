@@ -51,6 +51,6 @@
             </span>
         </div>
         <button [disabled]="!EditEmp.valid" type="submit" class="btn btn-primary">Submit</button>
-        <button  class="btn btn-danger">Delete</button>
+        <button (click)="deleteEmployee()" class="btn btn-danger">Delete</button>
     </form>
 </div>

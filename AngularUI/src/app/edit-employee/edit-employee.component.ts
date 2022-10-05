@@ -29,6 +29,14 @@ export class EditEmployeeComponent implements OnInit {
       this.Emp = emp;
     }) 
   }
+  deleteEmployee(){
+    this.service.deleteEmployee(this.Emp.id).
+    subscribe({
+      next:(emp)=>{
+        this.router.navigate(['employees']);
+      }
+    })
+  }
 
   EditEmployee() {
     var updeatEmployeeRequest:IEmployee = {
