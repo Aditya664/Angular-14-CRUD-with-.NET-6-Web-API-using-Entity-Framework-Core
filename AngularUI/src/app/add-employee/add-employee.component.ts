@@ -32,7 +32,7 @@ export class AddEmployeeComponent implements OnInit {
     this.addEmployeeRequest = {
       id:'',
       name:this.AddEmp.value.name,
-      email:this.AddEmp.value.name,
+      email:this.AddEmp.value.email,
       phone:this.AddEmp.value.phone,
       salary:this.AddEmp.value.salary,
       department:this.AddEmp.value.department

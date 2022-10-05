@@ -16,7 +16,7 @@ export class EditEmployeeComponent implements OnInit {
   constructor(private router: ActivatedRoute, private service: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-     this.EditEmp = this.fb.group({
+    this.EditEmp = this.fb.group({
         id:['responce.id'],
         name: [ 'responce.name', [Validators.required]],
         email: ['responce.email', [Validators.required, Validators.email]],
@@ -28,10 +28,6 @@ export class EditEmployeeComponent implements OnInit {
     this.service.getEmployee(id).subscribe(emp =>{
       this.Emp = emp;
     }) 
-    this.EditEmp = this.fb.group({
-      name: [this.Emp.name, [Validators.required]],
-      email: [this.Emp.email, [Validators.required, Validators.email]]
-    })
   }
 
   EditEmployee() {
